@@ -1,0 +1,117 @@
+<?php $__env->startSection('content'); ?>
+
+  <div class="page-content row">
+    <!-- Page header -->
+
+ 
+ 	<div class="page-content-wrapper m-t">
+
+
+<div class="sbox">
+	<div class="sbox-title"> 
+		<div class="sbox-tools pull-left" >
+			<a href="<?php echo e(url($pageModule.'?return='.$return)); ?>" class="tips btn btn-xs btn-default"  title="<?php echo e(Lang::get('core.btn_back')); ?>" ><i class="fa  fa-arrow-left"></i></a> 
+		</div>
+		<div class="sbox-tools " >
+			<?php if(Session::get('gid') ==1): ?>
+				<a href="<?php echo e(URL::to('sximo/module/config/'.$pageModule)); ?>" class="tips btn btn-xs btn-default" title=" <?php echo e(Lang::get('core.btn_config')); ?>" ><i class="fa  fa-ellipsis-v"></i></a>
+			<?php endif; ?> 			
+		</div> 
+
+	</div>
+	<div class="sbox-content"> 	
+
+		<ul class="parsley-error-list">
+			<?php foreach($errors->all() as $error): ?>
+				<li><?php echo e($error); ?></li>
+			<?php endforeach; ?>
+		</ul>	
+
+		 <?php echo Form::open(array('url'=>'nzriba/save?return='.$return, 'class'=>'form-horizontal','files' => true , 'parsley-validate'=>'','novalidate'=>' ')); ?>
+
+<div class="col-md-12">
+						<fieldset><legend> Riba-Nalog</legend>
+				<?php echo Form::hidden('riba_id', $row['riba_id']); ?>					
+									  <div class="form-group  " >
+										<label for="Ime Naloga" class=" control-label col-md-4 text-left"> Ime Naloga </label>
+										<div class="col-md-7">
+										  <input  type='text' name='ime_naloga' id='ime_naloga' value='<?php echo e($row['ime_naloga']); ?>' 
+						     class='form-control ' /> 
+										 </div> 
+										 <div class="col-md-1">
+										 	
+										 </div>
+									  </div> 					
+									  <div class="form-group  " >
+										<label for="Uzgojni Uzrast" class=" control-label col-md-4 text-left"> Uzgojni Uzrast </label>
+										<div class="col-md-7">
+										  <input  type='text' name='uzgojni_uzrast' id='uzgojni_uzrast' value='<?php echo e($row['uzgojni_uzrast']); ?>' 
+						     class='form-control ' /> 
+										 </div> 
+										 <div class="col-md-1">
+										 	
+										 </div>
+									  </div> 					
+									  <div class="form-group  " >
+										<label for="Radnik" class=" control-label col-md-4 text-left"> Radnik </label>
+										<div class="col-md-7">
+										  <select name='id' rows='5' id='id' class='select2 '   ></select> 
+										 </div> 
+										 <div class="col-md-1">
+										 	
+										 </div>
+									  </div> 					
+									  <div class="form-group  " >
+										<label for="Status" class=" control-label col-md-4 text-left"> Status </label>
+										<div class="col-md-7">
+										  <input  type='text' name='status' id='status' value='<?php echo e($row['status']); ?>' 
+						     class='form-control ' /> 
+										 </div> 
+										 <div class="col-md-1">
+										 	
+										 </div>
+									  </div> </fieldset>
+			</div>
+			
+			
+
+		
+			<div style="clear:both"></div>	
+				
+					
+				  <div class="form-group">
+					<label class="col-sm-4 text-right">&nbsp;</label>
+					<div class="col-sm-8">	
+					<button type="submit" name="apply" class="btn btn-info btn-sm" ><i class="icon-checkmark-circle2"></i> <?php echo e(Lang::get('core.sb_apply')); ?></button>
+					<button type="submit" name="submit" class="btn btn-primary btn-sm" ><i class="icon-bubble-check"></i> <?php echo e(Lang::get('core.sb_save')); ?></button>
+					<button type="button" onclick="location.href='<?php echo e(URL::to('nzriba?return='.$return)); ?>' " class="btn btn-warning btn-sm "><i class="icon-cancel-circle2 "></i>  <?php echo e(Lang::get('core.sb_cancel')); ?> </button>
+					</div>	  
+			
+				  </div> 
+		 
+		 <?php echo Form::close(); ?>
+
+	</div>
+</div>		 
+</div>	
+</div>			 
+   <script type="text/javascript">
+	$(document).ready(function() { 
+		
+		
+		$("#id").jCombo("<?php echo url('nzriba/comboselect?filter=tb_users:id:first_name|last_name'); ?>",
+		{  selected_value : '<?php echo e($row["id"]); ?>' });
+		 
+
+		$('.removeMultiFiles').on('click',function(){
+			var removeUrl = '<?php echo e(url("nzriba/removefiles?file=")); ?>'+$(this).attr('url');
+			$(this).parent().remove();
+			$.get(removeUrl,function(response){});
+			$(this).parent('div').empty();	
+			return false;
+		});		
+		
+	});
+	</script>		 
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

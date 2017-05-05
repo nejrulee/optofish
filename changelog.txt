@@ -1,0 +1,20 @@
+Changelog 5.1.4
+
+- Enchance Controller function getShow()
+- Fix Css Menu on Issue Module ( button gone when have a lot of hierarcy menus )
+- Fix Notification filter for spesific users
+- fix untranslation lang on  generated module
+- FIx notification status label ('success') when error 	( Sitehelpers , function showNotification() ) 
+- Fix External menu at level 3
+- add new feature integrated Frontend Grid
+- add new setting for mail
+- add new setting for global date format
+- Fix some issue on keeping cookie session
+- change flow process and logical master detail
+- add new feature unlimited master detail view
+- add new subform ( master detail form )
+
+
+New Lang
+*"btn_clearsearch"					=> "Clear Search",	
+
